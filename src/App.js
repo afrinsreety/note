@@ -1,54 +1,42 @@
 import './App.css';
 import React, { useState } from 'react'
-import States from './States';
+import Inputs from './components/Inputs';
+import Outputs from './components/Outputs';
 
 
 function App() {
-	// declaring stats 
-	const [title, setTitle] = useState("");
-	const [note, setnote] = useState("");
+	// declaring states 
+	const [note, setnote] = useState({
+		title:"",
+		description:"",
+		date:""
+	});
 	const [notes, setnotes] = useState([]);
 
-	// declaring functions 
-	function changeTitle(event) {
-		setTitle(event.target.value);
-		console.log("changing..", event.target.value);
-	}
-	function changeNote(event) {
-		setnote(event.target.value);
-		console.log("changing...", event.target.value);
+	function onInputChange(e){
+		console.log(note)
+		debugger
+		setnote({
+			...note,
+			[e.target.name] : e.target.value
+		});
+		console.log(note)
+
 	}
 
-	function onSave() {
-		var currentNote = {
-			title: title,
-			note: note
-		}
-		setnotes([...notes, currentNote]);
+	
+	function onSave(e) {
+		e.preventDefault();
+		setnotes([...notes, note]);
 	}
 
 	return (
 		<div className="container">
-			< States titlee={changeTitle}
-				notee={changeNote}
-				saved={onSave} />
+			< Inputs onInputChange={onInputChange}
+				onSave={onSave} />
+			<Outputs notes={notes}/>
 
-			<div className='output-container' >
-				<table className='data-table' border="2">
-					<tr>
-						<th>Title</th>
-						<th>Note</th>
-					</tr>
-					{
-						notes.map(function (item) {
-							return (<tr>
-								<td>{item.title}</td>
-								<td>{item.note}</td>
-							</tr>)
-						})
-					}
-				</table>
-			</div>
+			
 		</div>
 	);
 }
