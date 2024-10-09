@@ -1,7 +1,34 @@
 body{
   background: #cec5c5;
+
 }
 
 .input-container{
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.container{
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.input-container label{
+  width: 100px;
+  display: block;
+}
+
+.data-table{
+  width: 100%;
+  margin-top: 20px;
+  background: #ffffff;
+}
+.btn-save{
+  height: 40px;
+  background-color: #063b1e;
+  color: #ffffff;
+  font-size: 18px;
 }
