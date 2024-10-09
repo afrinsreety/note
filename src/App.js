@@ -1,5 +1,7 @@
 import './App.css';
 import React, { useState } from 'react'
+import States from './States';
+
 
 function App() {
 	// declaring stats 
@@ -26,21 +28,10 @@ function App() {
 	}
 
 	return (
-		<div className='container'>
-			<h3>Create a note </h3>
-			<div className='formContainer'>
-				<div className='input-container'>
-					<label>Title: </label>
-					<input onChange={changeTitle} />
-				</div>
-				<div className='input-container'>
-					<label>Note : </label>
-					<textarea onChange={changeNote}></textarea>
-				</div>
-				<div className='input-container'>
-					<button className='btn-save' onClick={onSave}>Save</button>
-				</div>
-			</div>
+		<div className="container">
+			< States titlee={changeTitle}
+				notee={changeNote}
+				saved={onSave} />
 
 			<div className='output-container' >
 				<table className='data-table' border="2">
