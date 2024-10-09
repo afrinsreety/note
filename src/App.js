@@ -1,23 +1,54 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState} from 'react'
 
 function App() {
+ const [title, setTitle] = useState("1st note");
+ const [note,setnote] = useState();
+ const [notes, setnotes] = useState([]);
+ function changeTitle(event){
+  setTitle(event.target.value);
+  console.log("changing..", event.target.value);
+ }
+ function changeNote(event){
+  setnote(event.target.value);
+  console.log("changing...",event.target.value);
+ }
+
+ function onSave(){
+  console.log("on save", title, note);
+
+  console.log("notes", notes);
+  debugger
+  var localNotes = notes;
+  
+  localNotes.push({
+    title: title,
+    note: note
+  })
+  setnotes(localNotes);
+  console.log("notes", notes);
+
+
+ }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h3>Create a note : {title}</h3>
+
+      <div className='input-container'>
+        <label>Title: </label>
+        <input onChange={changeTitle}  />
+      </div>
+<h3>Create a note : {note}</h3>
+       <div className='input-container'>
+        <label>Note : </label>
+        <textarea onChange={changeNote}></textarea>
+      </div> 
+
+      <div className='input-container'>
+        <button onClick={onSave}>Save</button>
+      </div> 
+
+
     </div>
   );
 }
