@@ -53,3 +53,12 @@ body{
   padding: 5px 10px;
   cursor: pointer;
 }
+
+@media (max-width:380px){
+  .action-btn{
+    flex-direction: column;
+  }
+  .edit-btn{
+    margin-bottom: 5px;
+  }
+}
