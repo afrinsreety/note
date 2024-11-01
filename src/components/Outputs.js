@@ -8,6 +8,7 @@ export default function Outputs({notes}) {
 						<th>Date</th>
 						<th>Title</th>
 						<th>Description</th>
+						<th>Action</th>
 					</tr>
 					{
 						notes.map(function (item) {
@@ -15,6 +16,12 @@ export default function Outputs({notes}) {
 								<td>{item.date}</td>
 								<td>{item.title}</td>
 								<td>{item.description}</td>
+								<td>
+									<div className='action-btn'>
+										<button className='edit-btn'>Edit</button>
+										<button className='delete-btn'>Delete</button>
+									</div>
+								</td>
 							</tr>)
 						})
 					}
