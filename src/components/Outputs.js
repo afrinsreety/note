@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Outputs({notes}) {
+export default function Outputs({notes,deleteNote}) {
   return (
     <div className='output-container' >
 				<table className='data-table' border="2">
@@ -19,7 +19,9 @@ export default function Outputs({notes}) {
 								<td>
 									<div className='action-btn'>
 										<button className='edit-btn'>Edit</button>
-										<button className='delete-btn'>Delete</button>
+										<button onClick={()=>{
+											deleteNote(item.title);
+										}}  className='delete-btn'>Delete</button>
 									</div>
 								</td>
 							</tr>)

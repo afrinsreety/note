@@ -11,7 +11,10 @@ function App() {
 		description: "",
 		date: ""
 	});
-	const [notes, setnotes] = useState(JSON.parse(localStorage.getItem("notes")) || []);
+
+	let notesFromLocalStorageString = localStorage.getItem("notes");
+	let notesFromLocalStorage = JSON.parse(notesFromLocalStorageString);
+	const [notes, setnotes] = useState( notesFromLocalStorage|| []);
 
 	function onInputChange(e) {
 		setnote({
@@ -26,14 +29,22 @@ function App() {
 	function onSave(e) {
 		e.preventDefault();
 		setnotes([...notes, note]);
-		localStorage.setItem("notes", JSON.stringify([...notes, note]));
+		let stringNotes = JSON.stringify([...notes, note]);
+		localStorage.setItem("notes", stringNotes);
 	}
+
+	function deleteNote(title){
+		const updatedNotes = notes.filter((item) => item.title !== title);
+		setnotes(updatedNotes);
+		localStorage.setItem("notes", JSON.stringify(updatedNotes));
+	}
+	
 
 	return (
 		<div className="container">
 			< Inputs onInputChange={onInputChange}
 				onSave={onSave} />
-			<Outputs notes={notes} />
+			<Outputs deleteNote={deleteNote} notes={notes} />
 		</div>
 	);
 }
