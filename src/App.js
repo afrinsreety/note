@@ -21,7 +21,7 @@ function App() {
 			...note,
 			[e.target.name]: e.target.value
 		});
-		console.log(note)
+		// console.log(note)
 
 	}
 
@@ -31,6 +31,20 @@ function App() {
 		setnotes([...notes, note]);
 		let stringNotes = JSON.stringify([...notes, note]);
 		localStorage.setItem("notes", stringNotes);
+		setnote({
+			title: "",
+			description: "",
+			date: ""
+		});
+	}
+
+	function onEdit (noteLocal){
+		setnote({
+			title: noteLocal.title,
+			description: noteLocal.description,
+			date: noteLocal.date
+		});
+
 	}
 
 	function deleteNote(title){
@@ -42,9 +56,9 @@ function App() {
 
 	return (
 		<div className="container">
-			< Inputs onInputChange={onInputChange}
+			< Inputs note={note} onInputChange={onInputChange}
 				onSave={onSave} />
-			<Outputs deleteNote={deleteNote} notes={notes} />
+			<Outputs onEdit={onEdit} deleteNote={deleteNote} notes={notes} />
 		</div>
 	);
 }
