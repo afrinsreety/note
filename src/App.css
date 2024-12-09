@@ -32,3 +32,33 @@ body{
   color: #ffffff;
   font-size: 18px;
 }
+
+.action-btn{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.edit-btn{
+  background: #f0ad4e;
+  color: #ffffff;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.delete-btn{
+  background: #d9534f;
+  color: #ffffff;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+@media (max-width:380px){
+  .action-btn{
+    flex-direction: column;
+  }
+  .edit-btn{
+    margin-bottom: 5px;
+  }
+}
