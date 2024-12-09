@@ -22,11 +22,13 @@ export default function Outputs({notes,deleteNote, onEditButton}) {
 								<td>{item.description}</td>
 								<td>
 									<div className='action-btn'>
+										
 										<button onClick={()=>{
 											onEditButton(item, index);
 										}} className='edit-btn'>Edit</button>
+
 										<button onClick={()=>{
-											deleteNote(item.title);
+											deleteNote(index);
 										}}  className='delete-btn'>Delete</button>
 									</div>
 								</td>

@@ -1,4 +1,4 @@
-export default function States({ onInputChange, onSubmit, note, currentIndex }) {
+export default function States({ onInputChange, onSubmit, note, currentIndex, onReset }) {
 
 	return (
 		<div>
@@ -27,6 +27,8 @@ export default function States({ onInputChange, onSubmit, note, currentIndex }) 
 						</div>
 					</div>
 				</form>
+
+				<button className='btn-clear' onClick={onReset}>Reset</button>
 
 			</div>
 		</div>

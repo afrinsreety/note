@@ -67,17 +67,26 @@ function App() {
 		setCurrentIndex(null);
 	}
 
-	function deleteNote(title) {
-		const updatedNotes = notes.filter((item) => item.title !== title);
+	function deleteNote(index) {
+		const updatedNotes = notes.filter((item, localIndex) =>localIndex!== index);
 		setnotes(updatedNotes);
 		localStorage.setItem("notes", JSON.stringify(updatedNotes));
+	}
+
+	function onReset() {
+		setnote({
+			title: "",
+			description: "",
+			date: ""
+		});
+		setCurrentIndex(null);
 	}
 
 
 	return (
 		<div className="container">
 			< Inputs currentIndex={currentIndex} note={note} onInputChange={onInputChange}
-				onSubmit={onSubmit}/>
+				onSubmit={onSubmit} onReset={onReset}/>
 			<Outputs onEditButton={onEditButton} deleteNote={deleteNote} notes={notes} />
 		</div>
 	);
