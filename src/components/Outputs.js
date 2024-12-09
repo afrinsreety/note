@@ -5,21 +5,25 @@ export default function Outputs({notes,deleteNote, onEdit}) {
     <div className='output-container' >
 				<table className='data-table' border="2">
 					<tr>
+						<th>No</th>
 						<th>Date</th>
 						<th>Title</th>
 						<th>Description</th>
 						<th>Action</th>
 					</tr>
 					{
-						notes.map(function (item) {
-							return (<tr key={item.title}>
+						notes.map(function (item, index) {
+							return (
+							
+							<tr key={index}>
+								<td>{index + 1}</td>
 								<td>{item.date}</td>
 								<td>{item.title}</td>
 								<td>{item.description}</td>
 								<td>
 									<div className='action-btn'>
 										<button onClick={()=>{
-											onEdit(item);
+											onEdit(item, index);
 										}} className='edit-btn'>Edit {item.title}</button>
 										<button onClick={()=>{
 											deleteNote(item.title);
