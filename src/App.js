@@ -30,16 +30,15 @@ function App() {
 		e.preventDefault();
 
 		if(currentIndex !== null) {
-			onUpdate(e);
+			onUpdate();
 		} else {
-			onSave(e);
+			onSave();
 		}
 
 	}
 
 
-	function onSave(e) {
-		
+	function onSave() {
 		setnotes([...notes, note]);
 		let stringNotes = JSON.stringify([...notes, note]);
 		localStorage.setItem("notes", stringNotes);
@@ -50,22 +49,14 @@ function App() {
 		});
 	}
 
-	function onEdit(noteLocal, index) {
-		setnote({
-			title: noteLocal.title,
-			description: noteLocal.description,
-			date: noteLocal.date
-		});
-
+	function onEditButton(item, index) {
+		setnote(item);
 		setCurrentIndex(index);
 	}
-	function onUpdate(e) {
-		const updatedNotes = notes.map((item, index) => {
-			if (index === currentIndex) {
-				return note;
-			}
-			return item;
-		});
+
+	function onUpdate() {
+		let updatedNotes = [...notes];
+		updatedNotes[currentIndex] = note;
 		setnotes(updatedNotes);
 		localStorage.setItem("notes", JSON.stringify(updatedNotes));
 		setnote({
@@ -87,7 +78,7 @@ function App() {
 		<div className="container">
 			< Inputs currentIndex={currentIndex} note={note} onInputChange={onInputChange}
 				onSubmit={onSubmit}/>
-			<Outputs onEdit={onEdit} deleteNote={deleteNote} notes={notes} />
+			<Outputs onEditButton={onEditButton} deleteNote={deleteNote} notes={notes} />
 		</div>
 	);
 }
