@@ -1,4 +1,4 @@
-export default function States({ onInputChange, onSubmit, note, currentIndex, onReset }) {
+export default function Inputs({ onInputChange, onSubmit, note, currentIndex, onReset }) {
 
 	return (
 		<div>
