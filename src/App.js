@@ -22,6 +22,7 @@ function App() {
 			...note,
 			[e.target.name]: e.target.value
 		});
+		debugger
 		// console.log(note)
 
 	}
