@@ -14,22 +14,22 @@ function App() {
 
 	let notesFromLocalStorageString = localStorage.getItem("notes");
 	let notesFromLocalStorage = JSON.parse(notesFromLocalStorageString);
-	let [currentIndex, setCurrentIndex] = useState(null);
 	const [notes, setnotes] = useState(notesFromLocalStorage || []);
+	let [currentIndex, setCurrentIndex] = useState(null);
+
 
 	function onInputChange(e) {
 		setnote({
 			...note,
 			[e.target.name]: e.target.value
 		});
-		debugger
 		// console.log(note)
 
 	}
 
 	function onSubmit(e) {
 		e.preventDefault();
-
+		debugger
 		if(currentIndex !== null) {
 			onUpdate();
 		} else {
