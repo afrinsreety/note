@@ -1,5 +1,5 @@
 import './../App.css';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Inputs from './Inputs';
 import Outputs from './Outputs';
 
@@ -12,10 +12,17 @@ function NoteParent() {
 		date: ""
 	});
 
+
+
 	let notesFromLocalStorageString = localStorage.getItem("notes");
 	let notesFromLocalStorage = JSON.parse(notesFromLocalStorageString);
 	let [currentIndex, setCurrentIndex] = useState(null);
 	const [notes, setnotes] = useState(notesFromLocalStorage || []);
+
+	useEffect(()=>{
+		console.log("skl updating ", notes)
+		localStorage.setItem("notes", JSON.stringify(notes));
+	}, [notes])
 
 	function onInputChange(e) {
 		setnote({
@@ -40,8 +47,8 @@ function NoteParent() {
 
 	function onSave() {
 		setnotes([...notes, note]);
-		let stringNotes = JSON.stringify([...notes, note]);
-		localStorage.setItem("notes", stringNotes);
+		// let stringNotes = JSON.stringify([...notes, note]);
+		// localStorage.setItem("notes", stringNotes);
 		setnote({
 			title: "",
 			description: "",
@@ -58,7 +65,7 @@ function NoteParent() {
 		let updatedNotes = [...notes];
 		updatedNotes[currentIndex] = note;
 		setnotes(updatedNotes);
-		localStorage.setItem("notes", JSON.stringify(updatedNotes));
+		// localStorage.setItem("notes", JSON.stringify(updatedNotes));
 		onReset();
 	}
 
@@ -66,7 +73,7 @@ function NoteParent() {
 		// const updatedNotes = notes.filter((item, localIndex) =>localIndex!== index);
 		const updatedNotes = notes.splice(index, 1);
 		setnotes(updatedNotes);
-		localStorage.setItem("notes", JSON.stringify(updatedNotes));
+		// localStorage.setItem("notes", JSON.stringify(updatedNotes));
 	}
 
 	function onReset() {
