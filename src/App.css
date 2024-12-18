@@ -1,45 +1,47 @@
-body{
+body {
   background: #cec5c5;
 
 }
 
-.input-container{
+.input-container {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
 
 }
 
-.container{
+.container {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
 }
 
-.input-container label{
+.input-container label {
   width: 100px;
   display: block;
 }
 
-.data-table{
+.data-table {
   width: 100%;
   margin-top: 20px;
   background: #ffffff;
 }
-.btn-save{
+
+.btn-save {
   height: 40px;
   background-color: #063b1e;
   color: #ffffff;
   font-size: 18px;
+  cursor: pointer;
 }
 
-.action-btn{
+.action-btn {
   display: flex;
   align-items: center;
   padding: 10px;
 }
 
-.edit-btn{
+.edit-btn {
   background: #f0ad4e;
   color: #ffffff;
   padding: 5px 10px;
@@ -47,18 +49,29 @@ body{
   cursor: pointer;
 }
 
-.delete-btn{
+.delete-btn {
   background: #d9534f;
   color: #ffffff;
   padding: 5px 10px;
   cursor: pointer;
 }
 
-@media (max-width:380px){
-  .action-btn{
+.btn-clear {
+  background: #d9534f;
+  color: #ffffff;
+  padding: 5px 10px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+@media (max-width:380px) {
+  .action-btn {
     flex-direction: column;
   }
-  .edit-btn{
+
+  .edit-btn {
     margin-bottom: 5px;
   }
 }

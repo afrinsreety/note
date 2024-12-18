@@ -14,8 +14,9 @@ function App() {
 
 	let notesFromLocalStorageString = localStorage.getItem("notes");
 	let notesFromLocalStorage = JSON.parse(notesFromLocalStorageString);
-	let [currentIndex, setCurrentIndex] = useState(null);
 	const [notes, setnotes] = useState(notesFromLocalStorage || []);
+	let [currentIndex, setCurrentIndex] = useState(null);
+
 
 	function onInputChange(e) {
 		setnote({
@@ -28,18 +29,17 @@ function App() {
 
 	function onSubmit(e) {
 		e.preventDefault();
-
+		debugger
 		if(currentIndex !== null) {
-			onUpdate(e);
+			onUpdate();
 		} else {
-			onSave(e);
+			onSave();
 		}
 
 	}
 
 
-	function onSave(e) {
-		
+	function onSave() {
 		setnotes([...notes, note]);
 		let stringNotes = JSON.stringify([...notes, note]);
 		localStorage.setItem("notes", stringNotes);
@@ -50,22 +50,14 @@ function App() {
 		});
 	}
 
-	function onEdit(noteLocal, index) {
-		setnote({
-			title: noteLocal.title,
-			description: noteLocal.description,
-			date: noteLocal.date
-		});
-
+	function onEditButton(item, index) {
+		setnote(item);
 		setCurrentIndex(index);
 	}
-	function onUpdate(e) {
-		const updatedNotes = notes.map((item, index) => {
-			if (index === currentIndex) {
-				return note;
-			}
-			return item;
-		});
+
+	function onUpdate() {
+		let updatedNotes = [...notes];
+		updatedNotes[currentIndex] = note;
 		setnotes(updatedNotes);
 		localStorage.setItem("notes", JSON.stringify(updatedNotes));
 		setnote({
@@ -76,18 +68,27 @@ function App() {
 		setCurrentIndex(null);
 	}
 
-	function deleteNote(title) {
-		const updatedNotes = notes.filter((item) => item.title !== title);
+	function deleteNote(index) {
+		const updatedNotes = notes.filter((item, localIndex) =>localIndex!== index);
 		setnotes(updatedNotes);
 		localStorage.setItem("notes", JSON.stringify(updatedNotes));
+	}
+
+	function onReset() {
+		setnote({
+			title: "",
+			description: "",
+			date: ""
+		});
+		setCurrentIndex(null);
 	}
 
 
 	return (
 		<div className="container">
 			< Inputs currentIndex={currentIndex} note={note} onInputChange={onInputChange}
-				onSubmit={onSubmit}/>
-			<Outputs onEdit={onEdit} deleteNote={deleteNote} notes={notes} />
+				onSubmit={onSubmit} onReset={onReset}/>
+			<Outputs onEditButton={onEditButton} deleteNote={deleteNote} notes={notes} />
 		</div>
 	);
 }
