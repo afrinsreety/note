@@ -6,9 +6,11 @@ import {
   Link
 } from "react-router-dom";
 
-import Home from './Home';
-import NoteParent from "./NoteParent";
-import About from './About';
+
+import Home from './components/Home';
+import NoteParent from "./components/NoteParent";
+import About from './components/About';
+
 
 export default function App() {
   return (

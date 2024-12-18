@@ -1,7 +1,7 @@
-import './App.css';
+import './../App.css';
 import React, { useState } from 'react'
-import Inputs from './components/Inputs';
-import Outputs from './components/Outputs';
+import Inputs from './Inputs';
+import Outputs from './Outputs';
 
 
 function NoteParent() {
@@ -59,16 +59,12 @@ function NoteParent() {
 		updatedNotes[currentIndex] = note;
 		setnotes(updatedNotes);
 		localStorage.setItem("notes", JSON.stringify(updatedNotes));
-		setnote({
-			title: "",
-			description: "",
-			date: ""
-		});
-		setCurrentIndex(null);
+		onReset();
 	}
 
 	function deleteNote(index) {
-		const updatedNotes = notes.filter((item, localIndex) =>localIndex!== index);
+		// const updatedNotes = notes.filter((item, localIndex) =>localIndex!== index);
+		const updatedNotes = notes.splice(index, 1);
 		setnotes(updatedNotes);
 		localStorage.setItem("notes", JSON.stringify(updatedNotes));
 	}
