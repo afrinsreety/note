@@ -1,10 +1,4 @@
-import { useEffect } from "react"
-export default function States({ onInputChange, onSubmit, note, currentIndex, onReset }) {
-
-	useEffect(() => {
-		console.log("skl changing ", note)
-	}, [])
-	
+export default function Inputs({ onInputChange, onSubmit, note, currentIndex, onReset }) {
 	return (
 		<div>
 			<div className=''>
