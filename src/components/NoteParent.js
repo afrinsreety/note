@@ -70,8 +70,9 @@ function NoteParent() {
 	}
 
 	function deleteNote(index) {
-		// const updatedNotes = notes.filter((item, localIndex) =>localIndex!== index);
-		const updatedNotes = notes.splice(index, 1);
+		const updatedNotes = [...notes];
+
+		 updatedNotes.splice(index, 1);
 		setnotes(updatedNotes);
 		// localStorage.setItem("notes", JSON.stringify(updatedNotes));
 	}
