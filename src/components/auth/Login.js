@@ -11,7 +11,7 @@ export default function Login() {
 
     const LoginUser = async (email, password) => {
         try {
-            const dataBody = {email, password};
+            const dataBody = {email, password, returnSecureToken: true};
             const urlSignup = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDXAwsDhK38AfoeO_zrwVb87qG01JUIpIE';
             const response = await fetch(urlSignup, {
                 method: 'POST',
@@ -28,6 +28,7 @@ export default function Login() {
             date.setTime(date.getTime() + (60 * 60 * 1000));
             document.cookie = `idToken=${data.idToken}; expires=${date.toUTCString()}`;
             document.cookie = `email=${data.email}; expires=${date.toUTCString()}`;
+            document.cookie = `localId=${data.localId}; expires=${date.toUTCString()}`;
 
             window.location.href = '/';
 
