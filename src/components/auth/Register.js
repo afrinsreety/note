@@ -1,4 +1,5 @@
 import React from 'react'
+import { registerUser } from '../../api/auth';
 
 export default function Register() {
     const handleSubmit = (e) => {
@@ -9,33 +10,7 @@ export default function Register() {
         registerUser(email, password);
     }
 
-    const registerUser = async (email, password) => {
-        try {
-            const dataBody = {email, password};
-            const urlSignup = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDXAwsDhK38AfoeO_zrwVb87qG01JUIpIE';
-            const response = await fetch(urlSignup, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(dataBody)
-            });
-            console.log("azs",response);
-            const data = await response.json();
-            console.log(data);
-
-            // set a cooke for 60 minutes with data.idToken and set another for email
-            const date = new Date();
-            date.setTime(date.getTime() + (60 * 60 * 1000));
-            document.cookie = `idToken=${data.idToken}; expires=${date.toUTCString()}`;
-            document.cookie = `email=${data.email}; expires=${date.toUTCString()}`;
-            // window.location.href = '/';
-
-        } catch (error) {
-            console.error(error + 'error');
-        }
-
-    }
+    
   return (
     <div className='container'>
         <h1 className='font-bold text-2xl mb-5'>Register</h1>

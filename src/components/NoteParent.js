@@ -2,6 +2,7 @@ import './../App.css';
 import React, { useState, useEffect } from 'react'
 import Inputs from './Inputs';
 import Outputs from './Outputs';
+import { saveNoteToFirebase } from '../api/note';
 
 
 function NoteParent() {
@@ -43,49 +44,15 @@ function NoteParent() {
 		}
 
 	}
-	function getCookie(cookieName){
-		let cookies = document.cookie.split(";");
-		let cookieValue = cookies.find(cookie => cookie.includes(cookieName+"="));
-		return cookieValue.split("=")[1].trim();
-	}
 
-	async function sendToFirebase(note){
-
-		let url = "https://firestore.googleapis.com/v1/projects/enote-2025/databases/(default)/documents/notes?key=AIzaSyDXAwsDhK38AfoeO_zrwVb87qG01JUIpIE";
-
-		console.log("azs token", getCookie("idToken"));
-
-		let headers = {	
-			'Content-Type': 'application/json',
-			'Authorization': 'Bearer '+getCookie("idToken")
-		}
-
-		let body = {
-			"fields": {
-			  "title": { "stringValue": note.title },
-			  "description": { "stringValue": note.description },
-			  "date": { "timestampValue": new Date(note.date).toISOString() },
-			  "userId": { "stringValue": getCookie("localId") }
-			}
-		  }
-
-		  let response = await fetch(url,{
-			method:"POST",
-			headers: headers,
-			body: JSON.stringify(body)
-		  })
-
-		  let data = await response.json();
-
-		  console.log(data);
-	}
+	
 
 
 	function onSave() {
 		setnotes([...notes, note]);
 		// let stringNotes = JSON.stringify([...notes, note]);
 		// localStorage.setItem("notes", stringNotes);
-		sendToFirebase(note);
+		saveNoteToFirebase(note);
 		setnote({
 			title: "",
 			description: "",

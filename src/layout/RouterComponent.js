@@ -15,7 +15,7 @@ export default function RouterComponent() {
           <Route path="/about" element={<About />} />
           <Route path="/notes" element={<NoteParent />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
         </Routes>
   )
